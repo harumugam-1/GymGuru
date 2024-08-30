@@ -57,10 +57,10 @@ export async function createUser(height_cm,emailUpdates,role){
 
 export async function createExercise(userID){
     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Creating Exercise <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-    
+
 }
 
-export async function createExercise(userID){
+export async function createExercises(userID){
     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Creating User <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
 }
 

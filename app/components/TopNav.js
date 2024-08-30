@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from 'next/image'
 import Logo from './Logo'
 import { auth } from "../../auth"
-import LogOut from './Logout'
+import LogOut from './LogOut'
 import PathBar from './PathBar'
 export default async function TopNav({settings = true}){
     const session = await auth();

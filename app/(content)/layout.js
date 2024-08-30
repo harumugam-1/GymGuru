@@ -12,11 +12,11 @@ export default async function HomeLayout({ children }) {
   return (
     <div className="flex flex-col min-h-screen">
       <TopNav settings= {true} />
-      <div className="h-[4.00rem] sm:h-[5.00rem]"></div>
+      <div className="spacing-top"></div>
       <div className='flex-grow w-[100vw] justify-items-center'>
         {children}
       </div>
-      <div className="h-[48px] sm:h-[52px] "></div>
+      <div className="spacing-bottom"></div>
       <NavBar/>
     </div>
 
