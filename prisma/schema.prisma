@@ -1,0 +1,201 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  joined    DateTime @default(now())
+  role      Role     @default(FREE)
+  height_cm Int?
+  
+  muscle   Muscle[]
+  exercise Exercise[]
+  cardio   Cardio[]
+  workout  Workout[]
+
+  loggedWorkout LoggedWorkout[]
+  emailUpdates  Boolean         @default(false)
+  dailyUpdate   DailyUpdate[]
+
+  @@index([email]) //so we can query by email much faster
+}
+
+model Muscle {
+  id                String        @id @default(uuid())
+  name              String
+  user              User          @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID            String
+  area              Area
+  isPrimaryFocus    Boolean       @default(false)
+  
+  exercisePrimary   Exercise[]    @relation("primary")
+  exerciseSecondary Exercise[]    @relation("secondary")
+  exerciseFatigue   Exercise[]    @relation("exerciseFatigue")
+  cardioFatigue     Cardio[]      @relation("cardioFatigue")
+  dailyUpdateSore   DailyUpdate[] @relation("musclesSore")
+  dailyUpdateInjury DailyUpdate[] @relation("musclesInjury")
+
+  @@unique([userID, name])
+  @@index([userID, name])
+}
+
+model Exercise {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID    String
+  area      Area
+  symmetric Boolean  @default(true)
+
+  primaryMuscle     Muscle   @relation("primary", references: [name, userID], fields: [primaryMuscleName, userID])
+  primaryMuscleName String
+  secondaryMuscles  Muscle[] @relation("secondary")
+
+  workout      Workout[]
+  calisthenics Boolean   @default(false) // determines if adding percentage of body weight to sets weight
+
+  overallFatigue Int
+  muscleFatigue  Muscle[]       @relation("exerciseFatigue")
+  ExerciseData   ExerciseData[]
+
+  @@unique(name: "user_exercise", [userID, name])
+  @@index([userID, name])
+}
+
+model Cardio {
+  id        String    @id @default(uuid())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  user      User      @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID    String
+  workout   Workout[]
+
+  overallFatigue Int
+  muscleFatigue  Muscle[]     @relation("cardioFatigue")
+  CardioData     CardioData[]
+
+  @@unique(name: "user_cardio", [userID, name])
+  @@index([userID, name])
+}
+
+model Workout {
+  id     String @id @default(uuid())
+  name   String
+  user   User   @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID String
+
+  exercise      Exercise[]
+  cardio        Cardio[]
+  loggedWorkout LoggedWorkout[]
+
+  @@unique(name: "user_workout", [userID, name])
+  @@index([userID, name])
+}
+
+model ExerciseData {
+  id String @id @default(uuid())
+
+  exercise     Exercise @relation(fields: [exerciseName, userID], references: [name, userID])
+  exerciseName String
+  userID       String
+  performedAt  DateTime
+
+  reps      Int[]
+  symmetric Boolean @default(true)
+  repsMore  Int[] // empty array if symmetric exercise, Array of length of reps if asymmetric/bilateral exercises, # of reps the stronger side performed
+  weight    Int[]
+  rest      Int[]
+  effort    Int
+
+  suggestedReps   Int[]
+  suggestedWeight Int[]
+  suggestedRest   Int[]
+
+  loggedWorkout   LoggedWorkout @relation(fields: [loggedWorkoutId], references: [id], onDelete: Cascade)
+  loggedWorkoutId String
+
+  @@index([userID])
+}
+
+model CardioData {
+  id          String   @id @default(uuid())
+  cardio      Cardio   @relation(fields: [cardioName, userID], references: [name, userID])
+  userID      String
+  cardioName  String
+  performedAt DateTime
+
+  duration Int[]
+  distance Int[]
+  pace     Int[]
+  rest     Int[]
+  effort   Int
+
+  suggestedDuration Int[]
+  suggestedDistance Int[]
+  suggestedPace     Int[]
+  suggestedRest     Int[]
+
+  loggedWorkout   LoggedWorkout @relation(fields: [loggedWorkoutId], references: [id], onDelete: Cascade)
+  loggedWorkoutId String
+
+  @@index([userID])
+}
+
+model LoggedWorkout {
+  id String @id @default(uuid())
+
+  user        User     @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID      String
+  workout     Workout? @relation(fields: [workoutName, userID], references: [name, userID])
+  workoutName String //Can have this be something like "Workout_1 July 7 2024" if not a premade workout
+
+  startedAt DateTime
+
+  exercise ExerciseData[]
+  cardio   CardioData[]
+  order    Int[] //orders by joining exercise and cardio as one array from 1 to n and orders such as n, n-1, 4,5,3,1,2 etc. 
+
+  @@index([userID,workoutName, startedAt])
+}
+
+model DailyUpdate {
+  id             String   @id @default(uuid())
+  user           User     @relation(fields: [userID], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  userID         String
+  musclesSore    Muscle[] @relation("musclesSore")
+  soreness       Int[]
+  musclesInjury  Muscle[] @relation("musclesInjury")
+  injurySeverity Int[]
+  weight         Int?
+
+  @@index([userID, createdAt])
+}
+
+enum Area {
+  PUSH
+  PULL
+  LEGS
+  CORE
+  OTHER
+}
+
+enum Role {
+  ADMIN
+  FREE
+  PAID
+  INACTIVE
+}

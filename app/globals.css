@@ -3,31 +3,106 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --length-nav: 25px;
+  --length-nav-sm: 33px
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@media (min-width: 640px) {
+
+  .nav-height {
+      top: calc(100% - var(--length-nav-sm));
+      height: calc(var(--length-nav-sm));
+    }
+  
+    .nav-height-hover:hover{
+      top: calc(100% - var(--length-nav-sm)*1.5);
+      height: calc(var(--length-nav-sm)*1.5);
+    }
+  
+}
+@media (max-width:640px){
+  .nav-height {
+    top: calc(100% - var(--length-nav));
+    height: calc(var(--length-nav));
   }
+
+  .nav-height-hover:hover{
+    top: calc(100% - var(--length-nav)*1.5);
+    height: calc(var(--length-nav)*1.5);
+  }
+
+}
+@layer components {
+  .bg-bg_primary_alt{
+    @apply bg-slate-800;
+  }
+
+  .outline-A{
+    @apply  outline-slate-800 outline-none outline-offset-0 outline-1;
+  }
+
+  .button-system{
+    @apply bg-button_primary outline-A text-icon_primary hover:bg-button_primary_hover hover:text-icon_secondary  rounded-3xl hover:rounded-md min-h-max min-w-max items-center flex justify-center
+
+  }
+  .button-secondary{
+    @apply bg-button_secondary outline-A text-icon_primary hover:bg-button_secondary_hover  rounded-3xl hover:rounded-md min-h-max min-w-max items-center flex justify-center 
+
+  }
+  .text-backing {
+    @apply bg-bg_primary_alt outline-A p-2 m-2 text-center items-center rounded-md
+  }
+  
+
+  .input-style-1 {
+    @apply bg-bg_secondary text-text_primary outline-A rounded-3xl focus:rounded-md transition-button-A p-1 m-1 text-[.9rem] min-w-max min-h-max px-4 text-center
+  }
+
+  .transition-button-A {
+    transition-property: color, background-color, border-color, text-decoration-color, border-radius,top,width,height,align-items,position,font,outline;
+    transition-timing-function: ease;
+    transition-duration: 500ms;
+  }
+  .login-button {
+    @apply  bg-button_primary outline-A text-icon_primary hover:bg-button_primary_hover hover:text-icon_secondary transition-button-A sm:text-xl sm:hover:text-lg text-base hover:text-sm sm:px-8 px-6 h-10 w-[100px] py-2 rounded-3xl hover:rounded-md min-h-max min-w-max text-justify my-2
+  }
+  .test-b {
+    @apply outline-dashed outline-white bg-blue-800 -outline-offset-0 outline-1;
+  } 
+  .test-g {
+    @apply outline-dashed outline-white bg-green-800 -outline-offset-0 outline-1;
+  } 
+  .test-r {
+    @apply outline-dashed outline-white bg-red-800 -outline-offset-0 outline-1;
+  } 
+  .test-y {
+    @apply outline-dashed outline-white bg-yellow-600 -outline-offset-0 outline-1;
+  } 
+  
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+
 
 @layer utilities {
   .text-balance {
-    text-wrap: balance;
+    text-wrap: pretty;
   }
 }
+
+.custom-scrollbar {
+  @apply overflow-y-auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply h-2 w-2 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-500 rounded-[.175rem]  hover:bg-slate-600 outline-none outline-[2px]  outline-slate-400 -outline-offset-[2px]
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-slate-800 outline-none outline-1 outline-slate-400 -outline-offset-1; /* Customize the scrollbar track color */
+}
+
+
