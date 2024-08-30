@@ -1,15 +1,15 @@
-d
-import React from 'react';
-import * as Dialog from '@radix-ui/react-dialog'
-import { Cross2Icon } from '@radix-ui/react-icons';
+'use client'
 
+import { useState } from 'react'
+import { Button, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Ri24HoursFill } from 'react-icons/ri'
 
+export default function LogOut() {
+  const [open, setOpen] = useState(false)
 
-
-
-export default function LogOut(){
-  return(
-ad
-    asdf
+  return (
+    <>
+      <div>Hi</div>
+       </>
   )
 }
