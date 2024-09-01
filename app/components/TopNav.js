@@ -16,8 +16,8 @@ export default async function TopNav({settings = true}){
                 <div className="flex flex-row items-center pl-2">
                     <Logo type = 'topnav'/>
                 </div>
-                <div id="username-logout-holder" className="flex flex-row items-center pb-1 text-[0.6rem] sm:text-lg pr-2">
-                    {settings === true ? <Link href = "/settings" className="button-system flex-row px-1 mx-2 h-6 sm:h-10 transition-button-A">
+                <div id="username-logout-holder" className="flex flex-row items-center pb-1 text-[0.6rem] sm:text-sm pr-2">
+                    {settings === true ? <Link href = "/settings" className="button-system flex-row px-1 mx-2 h-6 sm:h-8 transition-button-A">
                         <h1 className="p-2">{user_name}</h1>
                         <div>
                         <Image
@@ -25,7 +25,7 @@ export default async function TopNav({settings = true}){
                             alt=""
                             width ={32}
                             height={32}
-                            className="user-avatar rounded-full outline-A outline-2 sm:w-8 sm:h-8 w-4 h-4"/>
+                            className="user-avatar rounded-full outline-A outline-2 sm:w-6 sm:h-6 w-4 h-4"/>
                         </div>
                     </Link>:<></>}
                     <LogOut/>

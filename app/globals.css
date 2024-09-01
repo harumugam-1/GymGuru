@@ -84,6 +84,12 @@
   .spacing-bottom{
     @apply  h-[48px] sm:h-[52px] ;
   }
+  .bg-semitransparent {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.0), /* Very transparent at the top */
+      rgba(0, 0, 0, 0.9)  /* More opaque at the bottom */
+    );
+  }
 }
 
 
