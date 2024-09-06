@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 
-export default function NavBar() {
+export default function PathBar() {
     const path = usePathname();
 
     // Split the path into segments and capitalize each word

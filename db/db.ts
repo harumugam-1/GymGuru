@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 
 const prismaClientSingleton = () => {
-  return new PrismaClient()
+  return new PrismaClient()// insert for debuggin purposes can also choose one or more. {log:["query","error","warn","info"]}
 }
 
 declare const globalThis: {

@@ -3,8 +3,10 @@ import Link from "next/link";
 import Image from 'next/image'
 import Logo from './Logo'
 import { auth } from "../../auth"
-import LogOut from './LogOut'
+import AreYouSure from './AreYouSure'
 import PathBar from './PathBar'
+import {doLogout} from '../actions/signInSignOut'
+
 export default async function TopNav({settings = true}){
     const session = await auth();
     const name = session?.user?.name
@@ -28,7 +30,7 @@ export default async function TopNav({settings = true}){
                             className="user-avatar rounded-full outline-A outline-2 sm:w-6 sm:h-6 w-4 h-4"/>
                         </div>
                     </Link>:<></>}
-                    <LogOut/>
+                    <AreYouSure name = "Log Out" action = {doLogout} />
                 </div>
             </div>
             <PathBar />

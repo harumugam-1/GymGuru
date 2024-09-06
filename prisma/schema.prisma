@@ -47,7 +47,7 @@ model Muscle {
 
   @@unique([userID, name])
   @@index([userID, name])
-}
+}//maybe a muscleSize Int value for algorthym purposess !!! change uuid for all other models into autoIncrement()
 
 model Exercise {
   id        String   @id @default(uuid())
@@ -199,3 +199,4 @@ enum Role {
   PAID
   INACTIVE
 }
+//!!! add in sort and see if maybe type,clustered arguments may be useful for index congifuration

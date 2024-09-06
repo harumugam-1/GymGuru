@@ -11,7 +11,7 @@ export default function Home() {
         <ButtonOption name = "Workout Routine" description = "Create a preset Workout Routine." href = "/create/workout-routine"/>
         <ButtonOption name = "Strength Exercise" description = "Available metrics include: Weight, Sets, Dropsets, Reps, Rest Time, and more." href = "/create/strength-exercise"/>
         <ButtonOption name = "Cardio Exercise" description = "Available metrics include: Distance, Pace, Duration, Incline, and more." href = "/create/cardio-exercise"/>
-        <ButtonOption name = "Muscles" description = "Add or remove muscles you want to track progression for" href = "/create/other-exercise"/>
+        <ButtonOption name = "Muscles" description = "Add or remove muscles you want to track progression for" href = "/create/muscles"/>
       </div>
     </div>
     ) ;

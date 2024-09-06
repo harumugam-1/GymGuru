@@ -25,22 +25,22 @@
     top: calc(100% - var(--length-nav));
     height: calc(var(--length-nav));
   }
-
+  
   .nav-height-hover:hover{
     top: calc(100% - var(--length-nav)*1.5);
     height: calc(var(--length-nav)*1.5);
   }
-
+  
 }
 @layer components {
   .bg-bg_primary_alt{
     @apply bg-slate-800;
   }
 
-  .outline-A{
+  .outline-A{ 
     @apply  outline-slate-800 outline-none outline-offset-0 outline-1;
   }
-
+  
   .button-system{
     @apply bg-button_primary outline-A text-icon_primary hover:bg-button_primary_hover hover:text-icon_secondary  rounded-3xl hover:rounded-md min-h-max min-w-max items-center flex justify-center
 
@@ -50,14 +50,32 @@
 
   }
   .text-backing {
-    @apply bg-bg_primary_alt outline-A p-2 m-2 text-center items-center rounded-md
+    @apply bg-bg_primary_alt p-2 m-2 text-center items-center rounded-md outline-A
+  }
+  .option-backing {
+    background: linear-gradient( 
+      #190a0a,
+      90%,
+      #000000);
+    @apply outline-A p-2 m-2 text-center items-center rounded-2xl 
+  } 
+  .forced-outline {
+    outline: 1px solid #1e293b !important;
+    outline-offset: 0 ;
   }
   
 
+  
+  .bg-semitransparent {
+    background: linear-gradient(
+      rgba(25, 25, 25, 0.3), /* Very transparent at the top */
+      rgba(23, 23, 23,0.9)  /* More opaque at the bottom */
+    );
+  }
   .input-style-1 {
     @apply bg-bg_secondary text-text_primary outline-A rounded-3xl focus:rounded-md transition-button-A p-1 m-1 text-[.9rem] min-w-max min-h-max px-4 text-center
   }
-
+  
   .transition-button-A {
     transition-property: color, background-color, border-color, text-decoration-color, border-radius,top,width,height,align-items,position,font,outline;
     transition-timing-function: ease;
@@ -67,7 +85,7 @@
     @apply  bg-button_primary outline-A text-icon_primary hover:bg-button_primary_hover hover:text-icon_secondary transition-button-A sm:text-xl sm:hover:text-lg text-base hover:text-sm sm:px-8 px-6 h-10 w-[100px] py-2 rounded-3xl hover:rounded-md min-h-max min-w-max text-justify my-2
   }
   .test-b {
-    @apply outline-dashed outline-white bg-blue-800 -outline-offset-0 outline-1;
+      @apply outline-dashed outline-white bg-blue-800 -outline-offset-0 outline-1;
   } 
   .test-g {
     @apply outline-dashed outline-white bg-green-800 -outline-offset-0 outline-1;
@@ -83,12 +101,6 @@
   }
   .spacing-bottom{
     @apply  h-[48px] sm:h-[52px] ;
-  }
-  .bg-semitransparent {
-    background: linear-gradient(
-      rgba(0, 0, 0, 0.0), /* Very transparent at the top */
-      rgba(0, 0, 0, 0.9)  /* More opaque at the bottom */
-    );
   }
 }
 

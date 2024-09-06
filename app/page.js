@@ -1,7 +1,7 @@
 
-import { doSocialLogin } from "./actions/index"
+import { doSocialLogin } from "./actions/signInSignOut"
 import Logo from "./components/Logo"
-import {getOrCreateUser} from "./actions/dbFunctions"
+import {getOrCreateUser} from "./actions/dbUser"
 // maybe add an about page to sell prospective users on the product
 export default function Home() {
 
