@@ -1,7 +1,7 @@
 'use server'
 import db from "../../db/db";
 import { auth } from "../../auth";
-
+// encrypt user email and everything before entering in dataabase
 
 export async function initializeUser(){
     console.time("Initializing User")
