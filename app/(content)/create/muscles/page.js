@@ -1,5 +1,6 @@
 
 import Selector from '../../../components/Selector'
+import InputData from '../../../components/InputData'
 export default function Home() {
   
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Selector type = "muscle"/>
 
       <p className="text-backing">Add a muscle below:</p>
+      <InputData type = "name" label = "Name of Muscle"/>
     </div>
   );
 }
