@@ -10,8 +10,8 @@ export default function Home() {
       <Selector type = "muscle"/>
 
       <p className="text-backing">Add a muscle below:</p>
-      <InputData type = "name" label = "Name of Muscle"/>
+
     </div>
   );
 }
-
+///<InputData type = "name" label = "Name of Muscle"/>
