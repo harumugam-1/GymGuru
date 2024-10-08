@@ -2,6 +2,5 @@
 
 Welcome to my github repository for my GymGuru app. 
 
-Actually tho this is the branch
 
-!!! means implement this importnant, search for !!! when wrapping up project
+!!! means implement this important consideration or task to finish up, search for !!! when wrapping up project
