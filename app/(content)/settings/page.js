@@ -6,7 +6,7 @@ export default function Page() {
       <p>settings page</p>
       <p className="w-full">
         Things To ADD: <br/><br/>
-        
+        Add functionality for user feedback!!!<br/>
         Delete Account <br/>
         Change Email Address and Link with another user !!! or add social page <br/>
         Clear Data <br/>
